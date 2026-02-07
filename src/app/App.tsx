@@ -7,7 +7,7 @@ import Header from "../shared/ui/organisms/Header/Header";
 function App() {
   return (
     <>
-      <div className="bg-gray-100 dark:bg-gray-800 flex flex-col gap-2 h-screen pt-2">
+      <div className="bg-gray-100 dark:bg-gray-800 flex flex-col gap-2 pt-2 h-screen">
         <Header />
         <MapPage />
       </div>
