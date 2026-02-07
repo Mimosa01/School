@@ -1,13 +1,14 @@
-// app/App.tsx
 import { useEffect } from "react";
 import { ModalProvider } from "../features/modal/ui/ModalProvider";
 import { useAppSettings } from "../features/settings/model/useAppSettings";
-import MapPage from "../page/Map/Map";
+import MapPage from "../page/MapPage/MapPage";
+import Header from "../shared/ui/organisms/Header/Header";
 
 function App() {
   return (
     <>
-      <div className="p-2 min-h-screen">
+      <div className="bg-gray-100 dark:bg-gray-800 flex flex-col gap-2 h-screen pt-2">
+        <Header />
         <MapPage />
       </div>
       <ModalProvider />

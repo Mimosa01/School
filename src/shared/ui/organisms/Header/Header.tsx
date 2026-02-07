@@ -17,7 +17,7 @@ const Header = () => {
   const { isOpen, toggle, close } = useDrawer();
 
   return (
-    <div className="flex">
+    <div className="flex mx-2">
       <Surface className="p-4 mr-2">
         <Logo />
       </Surface>
