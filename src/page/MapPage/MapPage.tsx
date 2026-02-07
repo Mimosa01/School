@@ -1,17 +1,22 @@
-import { Floor3 } from "../../features/floors";
-import Footer from "../../shared/ui/molecules/Footer/Footer";
+import { useFloorStore } from "../../features/floors";
+import RoomMarkersLayer from "../../features/rooms/ui/RoomMakersLayer";
+import Footer from "../../shared/ui/organisms/Footer/Footer";
 import InteractiveMap from "../../shared/ui/organisms/InteractiveMap/InteractiveMap";
 
 const MapPage = () => {
+  const { currentFloor } = useFloorStore();
+  const FloorComponent = currentFloor.Component;
+
   return (
     <>
       <InteractiveMap
-        minScale={1}
-        maxScale={5}
-        initialScale={1.2}
+        minScale={0.3}
+        maxScale={2}
+        initialScale={0.3}
         onClick={(coords) => console.log('Клик:', coords)}
       >
-        <Floor3 />
+        <FloorComponent />
+        <RoomMarkersLayer />
       </InteractiveMap>
       <Footer />
     </>

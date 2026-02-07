@@ -44,10 +44,6 @@ const InteractiveMap = ({
   return (
     <div
       className={`relative h-[calc(100vh-160px)] overflow-hidden rounded-lg ${className}`}
-      style={{
-        paddingBottom: 'calc(env(safe-area-inset-bottom, 12px) + 12px)',
-        marginBottom: 'env(safe-area-inset-bottom, 0px)',
-      }}
     >
       <TransformWrapper
         initialScale={initialScale}

@@ -7,31 +7,23 @@ export type FloorId = 1 | 2 | 3;
 export interface FloorData {
   id: FloorId;
   name: string;
-  width: number;
-  height: number;
   Component: React.ComponentType;
 }
 
 export const FLOORS: Record<FloorId, FloorData> = {
   1: {
     id: 1,
-    name: 'Первый этаж',
-    width: 2027,
-    height: 1180,
+    name: '1 этаж',
     Component: Floor1,
   },
   2: {
     id: 2,
-    name: 'Второй этаж',
-    width: 2027,
-    height: 1180,
+    name: '2 этаж',
     Component: Floor2,
   },
   3: {
     id: 3,
-    name: 'Третий этаж',
-    width: 2027,
-    height: 1180,
+    name: '3 этаж',
     Component: Floor3,
   },
 };
