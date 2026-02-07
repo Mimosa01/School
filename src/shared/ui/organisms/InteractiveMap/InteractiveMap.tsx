@@ -44,6 +44,10 @@ const InteractiveMap = ({
   return (
     <div
       className={`relative h-[calc(100vh-160px)] overflow-hidden rounded-lg ${className}`}
+      style={{
+        paddingBottom: 'calc(env(safe-area-inset-bottom, 12px) + 12px)',
+        marginBottom: 'env(safe-area-inset-bottom, 0px)',
+      }}
     >
       <TransformWrapper
         initialScale={initialScale}
@@ -83,7 +87,7 @@ const InteractiveMap = ({
             </TransformComponent>
 
             {/* Панель управления */}
-            <div className="absolute bottom-4 right-4 flex flex-col gap-2 z-10">
+            <div className="absolute bottom-1/10 right-4 flex flex-col gap-2 z-10">
               <button
                 onClick={() => zoomIn()}
                 className="w-10 h-10 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-300 dark:border-gray-600 flex items-center justify-center text-lg font-bold text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
@@ -108,7 +112,7 @@ const InteractiveMap = ({
             </div>
 
             {/* Индикатор масштаба */}
-            <div className="absolute bottom-4 left-4 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm px-3 py-1.5 rounded-full text-sm font-medium text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 z-10">
+            <div className="absolute bottom-1/10 left-4 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm px-3 py-1.5 rounded-full text-sm font-medium text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 z-10">
               {Math.round(scale * 100)}%
             </div>
           </>

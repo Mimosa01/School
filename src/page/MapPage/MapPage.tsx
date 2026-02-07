@@ -4,17 +4,17 @@ import InteractiveMap from "../../shared/ui/organisms/InteractiveMap/Interactive
 
 const MapPage = () => {
   return (
-    <div className="">
+    <>
       <InteractiveMap
         minScale={1}
         maxScale={5}
-        initialScale={1}
+        initialScale={1.2}
         onClick={(coords) => console.log('Клик:', coords)}
       >
         <Floor3 />
       </InteractiveMap>
       <Footer />
-    </div>
+    </>
   )
 }
 
