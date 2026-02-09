@@ -125,17 +125,6 @@ export const ROOMS: Room[] = [
     height: 95,
   },
   {
-    id: '11',
-    floorId: 1,
-    number: '',
-    name: 'Кабинет завуча',
-    // type: 'classroom',
-    x: 234,
-    y: 702,
-    width: 74,
-    height: 147,
-  },
-  {
     id: '12',
     floorId: 1,
     number: 'Ж',
@@ -611,7 +600,7 @@ export const ROOMS: Room[] = [
     height: 355,
   },
   {
-    id: '5',
+    id: '55',
     floorId: 3,
     number: '35',
     name: 'Кабинет информатики',

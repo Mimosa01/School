@@ -1,10 +1,13 @@
 import { useEffect } from "react";
 import { ModalProvider } from "../features/modal/ui/ModalProvider";
-import { useAppSettings } from "../features/settings/model/useAppSettings";
 import MapPage from "../page/MapPage/MapPage";
 import Header from "../shared/ui/organisms/Header/Header";
+import { useSettingsStore } from "../features/settings/model/settingsStore";
+import { useInitializeNavigation } from "../features/navigation/model/useInitializeNavigation";
 
 function App() {
+  useInitializeNavigation();
+
   return (
     <>
       <div className="bg-gray-100 dark:bg-gray-800 flex flex-col gap-2 pt-2 h-screen">
@@ -17,14 +20,14 @@ function App() {
 }
 
 const AppWithTheme = () => {
-  const { settings } = useAppSettings();
+  const { theme } = useSettingsStore();
 
   const effectiveTheme = 
-    settings.theme === 'system'
+    theme === 'system'
       ? window.matchMedia('(prefers-color-scheme: dark)').matches
         ? 'dark'
         : 'light'
-      : settings.theme;
+      : theme;
 
   useEffect(() => {
     if (effectiveTheme === 'dark') {

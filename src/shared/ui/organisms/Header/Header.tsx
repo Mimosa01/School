@@ -12,6 +12,7 @@ import { openSettingsModal } from "../../../../features/settings/lib/openSetting
 import { openHelpModal } from "../../../../features/help/lib/openHelpModal";
 import { openAboutAppModal } from "../../../../features/about/lib/openAboutAppModal";
 import { openReportErrorModal } from "../../../../features/report/lib/openReportErrorModal";
+import { openAuthModal } from "../../../../features/auth";
 
 const Header = () => {
   const { isOpen, toggle, close } = useDrawer();
@@ -31,7 +32,7 @@ const Header = () => {
 
       <RightDrawer isOpen={isOpen} onClose={close} title="Настройки">
         <div className="space-y-4" key={isOpen ? 'drawer-open' : 'drawer-closed'}>
-          <AnimatedItem delay={100}>
+          <AnimatedItem delay={50}>
             <Button variant="secondary" className="w-full"
               onClick={(e) => {
                 e.stopPropagation();
@@ -41,10 +42,10 @@ const Header = () => {
               Расписание звонков
             </Button>
           </AnimatedItem>
-          <AnimatedItem delay={300}>
+          <AnimatedItem delay={100}>
             <Button variant="secondary" className="w-full">Избранное</Button>
           </AnimatedItem>
-          <AnimatedItem delay={500}>
+          <AnimatedItem delay={150}>
             <Button variant="secondary" className="w-full"
               onClick={(e) => {
                 e.stopPropagation();
@@ -54,7 +55,7 @@ const Header = () => {
               Настройки
             </Button>
           </AnimatedItem>
-          <AnimatedItem delay={500}>
+          <AnimatedItem delay={200}>
             <Button variant="secondary" className="w-full"
               onClick={(e) => {
                 e.stopPropagation();
@@ -64,7 +65,7 @@ const Header = () => {
               Помощь
             </Button>
           </AnimatedItem>
-          <AnimatedItem delay={500}>
+          <AnimatedItem delay={250}>
             <Button variant="secondary" className="w-full"
             onClick={(e) => {
               e.stopPropagation();
@@ -74,14 +75,26 @@ const Header = () => {
               О приложении
             </Button>
           </AnimatedItem>
-          <AnimatedItem delay={500}>
-            <Button variant="secondary" className="w-full"><Text className="text-rose-500"
+          <AnimatedItem delay={300}>
+            <Button variant="secondary" className="w-full"
               onClick={(e) => {
                 e.stopPropagation();
                 openReportErrorModal();
               }}
             >
+            <Text className="text-rose-500">
               Сообщить об ошибке
+            </Text></Button>
+          </AnimatedItem>
+          <AnimatedItem delay={300}>
+            <Button variant="danger" className="w-full"
+              onClick={(e) => {
+                e.stopPropagation();
+                openAuthModal();
+              }}
+            >
+            <Text color="light">
+              Войти
             </Text></Button>
           </AnimatedItem>
         </div>

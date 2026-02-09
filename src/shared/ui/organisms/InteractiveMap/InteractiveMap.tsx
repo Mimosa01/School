@@ -1,5 +1,7 @@
 import React from 'react';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
+import { useMapStore } from '../../../../features/map/model/mapStore';
+import Button from '../../atoms/Button/Button';
 
 export interface InteractiveMapProps {
   /**
@@ -39,11 +41,17 @@ const InteractiveMap = ({
   onClick,
   className = '',
 }: InteractiveMapProps) => {
-  const [scale, setScale] = React.useState(initialScale);
+  const {scale, setScale} = useMapStore();
 
   return (
     <div
       className={`relative h-[calc(100vh-160px)] overflow-hidden rounded-lg ${className}`}
+      style={{
+        // Учитываем безопасную область + браузерный навбар
+        paddingBottom: 'calc(env(safe-area-inset-bottom, 12px) + 12px)',
+        // Дополнительный отступ для браузерных кнопок
+        marginBottom: 'env(safe-area-inset-bottom, 0px)',
+      }}
     >
       <TransformWrapper
         initialScale={initialScale}
@@ -71,9 +79,16 @@ const InteractiveMap = ({
                 onClick={(e) => {
                   if (onClick) {
                     const rect = e.currentTarget.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    onClick({ x, y, scale });
+                    const clientX = e.clientX - rect.left;
+                    const clientY = e.clientY - rect.top;
+                    const mapX = clientX / scale;
+                    const mapY = clientY / scale;
+                    
+                    onClick({ 
+                      x: Math.round(mapX), 
+                      y: Math.round(mapY), 
+                      scale 
+                    });
                   }
                 }}
                 style={{ position: 'relative' }}
@@ -84,27 +99,21 @@ const InteractiveMap = ({
 
             {/* Панель управления */}
             <div className="absolute bottom-1/10 right-4 flex flex-col gap-2 z-10">
-              <button
-                onClick={() => zoomIn()}
-                className="w-10 h-10 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-300 dark:border-gray-600 flex items-center justify-center text-lg font-bold text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-                aria-label="Увеличить"
-              >
-                +
-              </button>
-              <button
-                onClick={() => zoomOut()}
-                className="w-10 h-10 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-300 dark:border-gray-600 flex items-center justify-center text-lg font-bold text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-                aria-label="Уменьшить"
-              >
-                -
-              </button>
-              <button
-                onClick={() => resetTransform()}
-                className="w-10 h-10 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-300 dark:border-gray-600 flex items-center justify-center text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-                aria-label="Сбросить"
-              >
-                ↻
-              </button>
+              {[
+                {sym:'+', aria:'Увеличить', func: zoomIn}, 
+                {sym: '-', aria:'Уменьшить', func: zoomOut}, 
+                {sym: '↻', aria:'Сбросить', func: resetTransform}
+              ].map((item, index) => (
+                <Button
+                  key={index}
+                  variant='secondary'
+                  onClick={() => item.func()}
+                  className="w-10 h-10 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-300 dark:border-gray-600 flex items-center justify-center text-lg font-bold text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                  aria-label={item.aria}
+                >
+                  {item.sym}
+                </Button>
+              ))}
             </div>
 
             {/* Индикатор масштаба */}

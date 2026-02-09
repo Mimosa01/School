@@ -1,11 +1,11 @@
 import Heading from "../../../shared/ui/atoms/Heading/Heading";
 import Text from "../../../shared/ui/atoms/Text/Text";
 import SegmentedControl from "../../../shared/ui/atoms/SegmentedControl/SegmentedControl";
-import type { ThemePreference, FontSize, RoomLabelMode } from "../model/types";
-import { useAppSettings } from "../model/useAppSettings";
+import { useSettingsStore } from "../model/settingsStore";
+import type { FontSize, RoomLabelMode, ThemePreference } from "../model/types";
 
 const SettingsModalContent = () => {
-  const { settings, updateSetting } = useAppSettings();
+  const { theme, fontSize, roomLabels, setTheme, setFontSize, setRoomLabels } = useSettingsStore();
 
   return (
     <div className="space-y-6">
@@ -22,8 +22,8 @@ const SettingsModalContent = () => {
             { label: 'Тёмная', value: 'dark' },
             { label: 'Система', value: 'system' },
           ]}
-          value={settings.theme}
-          onChange={(val) => updateSetting('theme', val as ThemePreference)}
+          value={theme}
+          onChange={(val) => setTheme(val as ThemePreference)}
         />
       </div>
 
@@ -36,8 +36,8 @@ const SettingsModalContent = () => {
             { label: 'Средний', value: 'medium' },
             { label: 'Крупный', value: 'large' },
           ]}
-          value={settings.fontSize}
-          onChange={(val) => updateSetting('fontSize', val as FontSize)}
+          value={fontSize}
+          onChange={(val) => setFontSize(val as FontSize)}
         />
       </div>
 
@@ -50,8 +50,8 @@ const SettingsModalContent = () => {
             { label: 'Никогда', value: 'never' },
             { label: 'При увеличении', value: 'onZoom' },
           ]}
-          value={settings.roomLabels}
-          onChange={(val) => updateSetting('roomLabels', val as RoomLabelMode)}
+          value={roomLabels}
+          onChange={(val) => setRoomLabels(val as RoomLabelMode)}
         />
       </div>
     </div>

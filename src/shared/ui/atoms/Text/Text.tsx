@@ -1,7 +1,7 @@
 import React from 'react';
 
-type TextSize = 'xs' | 'sm' | 'base' | 'lg';
-type TextColor = 'default' | 'muted' | 'primary' | 'success' | 'warning' | 'danger' | 'white';
+type TextSize = 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl';
+type TextColor = 'default' | 'muted' | 'primary' | 'success' | 'warning' | 'danger' | 'light' | 'custom';
 
 export interface TextProps extends React.HTMLAttributes<HTMLParagraphElement> {
   /**
@@ -18,7 +18,7 @@ export interface TextProps extends React.HTMLAttributes<HTMLParagraphElement> {
    * Жирность шрифта.
    * @default 'normal'
    */
-  weight?: 'normal' | 'medium' | 'semibold';
+  weight?: 'normal' | 'medium' | 'semibold' | 'bold';
   /**
    * Курсив.
    */
@@ -74,12 +74,17 @@ const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
       sm: 'text-sm',
       base: 'text-base',
       lg: 'text-lg',
+      xl: 'text-xl',
+      '2xl': 'text-2xl',
+      '3xl': 'text-3xl',
+      '4xl': 'text-4xl'
     };
 
     const weightClasses: Record<typeof weight, string> = {
       normal: 'font-normal',
       medium: 'font-medium',
       semibold: 'font-semibold',
+      bold: 'font-bold'
     };
 
     const colorClasses: Record<TextColor, string> = {
@@ -89,7 +94,8 @@ const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
       success: 'text-green-600 dark:text-green-400',
       warning: 'text-yellow-600 dark:text-yellow-400',
       danger: 'text-red-600 dark:text-red-400',
-      white: 'text-white',
+      light: 'text-text-gray-100',
+      custom: ''
     };
 
     const alignmentClass = {

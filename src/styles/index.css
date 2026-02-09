@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@import './font-sizes.css';
+
+@tailwind utilities;
 
 @custom-variant dark (&:where(.dark, .dark *));
 
