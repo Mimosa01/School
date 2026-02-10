@@ -4,6 +4,7 @@ import MapPage from "../page/MapPage/MapPage";
 import Header from "../shared/ui/organisms/Header/Header";
 import { useSettingsStore } from "../features/settings/model/settingsStore";
 import { useInitializeNavigation } from "../features/navigation/model/useInitializeNavigation";
+import OfflineNotification from "../shared/ui/organisms/OfflineNotification/OfflineNotification";
 
 function App() {
   useInitializeNavigation();
@@ -11,6 +12,7 @@ function App() {
   return (
     <>
       <div className="bg-gray-100 dark:bg-gray-800 flex flex-col gap-2 pt-2 h-screen">
+        <OfflineNotification />
         <Header />
         <MapPage />
       </div>

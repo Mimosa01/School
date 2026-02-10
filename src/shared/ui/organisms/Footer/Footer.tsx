@@ -15,34 +15,30 @@ const Footer = () => {
   };
 
   return (
-    <>
-      <StickyActionFooter>
-        {Object.values(FLOORS).map((floor) => (
-          <Button
-            key={floor.id}
-            variant={currentFloorId === floor.id ? 'primary' : 'secondary'}
-            onClick={() => setCurrentFloor(floor.id)}
-            className="shadow-md w-full aspect-2/1"
-          >
-            {floor.name}
-          </Button>
-        ))}
+    <StickyActionFooter className="max-w-full md:max-w-100">
+      {Object.values(FLOORS).map((floor) => (
         <Button
-          variant={'secondary'}
-          onClick={openSearch}
+          key={floor.id}
+          variant={currentFloorId === floor.id ? 'primary' : 'secondary'}
+          onClick={() => setCurrentFloor(floor.id)}
           className="shadow-md w-full aspect-2/1"
         >
-          <Search />
+          {floor.name}
         </Button>
-      </StickyActionFooter>
-
-      {/* Модальное окно поиска */}
+      ))}
+      <Button
+        variant={'secondary'}
+        onClick={openSearch}
+        className="shadow-md w-full aspect-2/1"
+      >
+        <Search />
+      </Button>
       <RoomSearch
         isOpen={isSearchOpen}
         onClose={closeSearch}
         onSelectRoom={handleRoomSelect}
       />
-    </>
+    </StickyActionFooter>
   );
 };
 
