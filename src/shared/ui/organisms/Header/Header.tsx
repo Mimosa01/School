@@ -25,7 +25,7 @@ const Header = () => {
       <Surface className="flex justify-between w-full px-4">
         <div>
           <Heading level={4}>Школьный навигатор</Heading>
-          <Text color="muted">Школа №123</Text>
+          <Text color="muted">Школа №11</Text>
         </div>
         <Button variant="ghost" onClick={toggle}><Settings /></Button>
       </Surface>
